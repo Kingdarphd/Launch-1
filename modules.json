@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LaunchPrep Academy | King Thrive Platform MVP</title>
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">LaunchPrep <span>Academy</span></div>
+    <nav>
+      <a href="#modules">Modules</a>
+      <a href="#student">Student</a>
+      <a href="#admin">Admin</a>
+      <a href="#pricing">Pricing</a>
+      <button class="ghost" onclick="showLogin()">Login</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Subscription-based AI competency platform</p>
+      <h1>Master the King Thrive Model with AI-integrated modules.</h1>
+      <p class="lead">Students complete lessons, receive AI coaching, upload competency evidence, earn badges, and build a digital portfolio for college, career, leadership, and life readiness.</p>
+      <div class="actions">
+        <button onclick="showCheckout('student')" class="btn">Start Student Plan</button>
+        <button onclick="scrollToId('modules')" class="btn secondary">View Modules</button>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <p class="eyebrow">King Thrive Score</p>
+      <div class="big-score" id="score">0%</div>
+      <div class="progress"><span id="scoreBar"></span></div>
+      <p>Based on completed competency evidence and badge progress.</p>
+    </div>
+  </section>
+
+  <main>
+    <section id="pricing" class="section">
+      <p class="eyebrow">Stripe-ready subscription tiers</p>
+      <h2>Built for students, families, schools, and sponsors.</h2>
+      <div class="cards pricing">
+        <article class="card"><h3>Student</h3><p class="price">$19/mo</p><p>Access to all modules, AI coach, badges, and portfolio.</p><button onclick="showCheckout('student')" class="btn small">Subscribe</button></article>
+        <article class="card featured"><h3>Family</h3><p class="price">$39/mo</p><p>Multiple student seats, parent view, progress summaries.</p><button onclick="showCheckout('family')" class="btn small">Subscribe</button></article>
+        <article class="card"><h3>School Cohort</h3><p class="price">$2,500+</p><p>Admin dashboard, cohort analytics, coach reports.</p><button onclick="showCheckout('school')" class="btn small">Request Cohort</button></article>
+      </div>
+    </section>
+
+    <section id="modules" class="section blue">
+      <p class="eyebrow">King Thrive competency pathway</p>
+      <h2>10 modules. 10 badges. One readiness portfolio.</h2>
+      <div id="moduleGrid" class="module-grid"></div>
+    </section>
+
+    <section id="student" class="section">
+      <p class="eyebrow">Student dashboard</p>
+      <h2>My Thrive Pathway</h2>
+      <div class="dashboard">
+        <div class="dash-card">
+          <h3>Current Module</h3>
+          <p id="currentModule">Belonging</p>
+          <button class="btn small" onclick="openModule('belonging')">Continue</button>
+        </div>
+        <div class="dash-card">
+          <h3>Badges Earned</h3>
+          <p class="stat" id="badgeCount">0 / 10</p>
+        </div>
+        <div class="dash-card">
+          <h3>Portfolio Evidence</h3>
+          <p class="stat" id="evidenceCount">0 items</p>
+        </div>
+      </div>
+      <div class="portfolio">
+        <h3>Evidence Portfolio</h3>
+        <div id="portfolioList"></div>
+      </div>
+    </section>
+
+    <section class="section ai">
+      <p class="eyebrow">OpenAI-ready coaching assistant</p>
+      <h2>AI Competency Coach</h2>
+      <div class="coach">
+        <select id="coachModule"></select>
+        <textarea id="coachInput" placeholder="Tell the AI coach what you are working on. Example: I need help preparing for a career fair."></textarea>
+        <button class="btn" onclick="coach()">Generate Coaching Plan</button>
+        <div id="coachOutput" class="output">Your coaching plan will appear here.</div>
+      </div>
+    </section>
+
+    <section id="admin" class="section dark">
+      <p class="eyebrow">Admin dashboard</p>
+      <h2>Coach and funder reporting view</h2>
+      <div class="admin-grid">
+        <div class="admin-card"><span>Active Students</span><strong>128</strong></div>
+        <div class="admin-card"><span>Avg. Thrive Score</span><strong id="adminAvg">72%</strong></div>
+        <div class="admin-card"><span>Badges Earned</span><strong>614</strong></div>
+        <div class="admin-card"><span>Evidence Submitted</span><strong>1,248</strong></div>
+      </div>
+      <table>
+        <thead><tr><th>Student</th><th>Plan</th><th>Progress</th><th>Risk Level</th><th>Next Action</th></tr></thead>
+        <tbody>
+          <tr><td>Student A</td><td>School Cohort</td><td>83%</td><td>Low</td><td>Leadership project review</td></tr>
+          <tr><td>Student B</td><td>Student</td><td>46%</td><td>Medium</td><td>Mentor check-in</td></tr>
+          <tr><td>Student C</td><td>Family</td><td>91%</td><td>Low</td><td>Portfolio celebration</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <button class="close" onclick="hideModal()">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <footer>
+    <strong>LaunchPrep Academy</strong>
+    <p>Powered by the King Thrive Model | AI-integrated college, career, leadership, and life readiness.</p>
+  </footer>
+
+  <script src="/src/app.js"></script>
+</body>
+</html>
